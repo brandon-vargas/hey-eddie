@@ -1,0 +1,25 @@
+.Column {
+    flex: 0 !important
+}
+.Row {
+    justify-content: center !important
+}
+@media screen and (max-width: 540px) {
+    .Row {
+        justify-content: flex-start !important
+    }
+}
+
+.FloatingButtonContainer{
+    margin: 0px;
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed;
+}
+/* @media screen and (max-width: 540px) {
+    .FloatingButtonContainer {
+        justify-content: flex-start !important
+    }
+} */
