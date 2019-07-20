@@ -14,15 +14,22 @@ class HomeLayout extends Component {
 
     constructor(props){
         super(props)
+        console.log(this.props)
         this.state = {
             login: true,
             notEditing: true,
-            mainDataList: []
+            mainDataList: this.props.mainDataList
         }
         this.addCard = this.addCard.bind(this);
         this.createColWithCard = this.createColWithCard.bind(this);
         // below is how to bind functions? 
         // this.updateColor = this.updateColor.bind(this)
+    }
+
+    componentDidMount() {
+        // const showAddButton = localStorage.getItem('notEditing') === 'true';
+        // console.log(showAddButton)
+        // this.setState({notEditing: showAddButton});
     }
 
     getList(){
@@ -72,8 +79,6 @@ class HomeLayout extends Component {
     }
 
     addCard(){
-        //TODO: what do i want to show when the add button is hit? 
-        // A Modal? a "new activity", what?
         this.setState({notEditing: false}); 
         // console.log(this.state.notEditing)
     }
@@ -90,7 +95,6 @@ class HomeLayout extends Component {
                     <div className="FloatingButtonContainer">
                         <Zoom
                         in={this.state.login && this.state.notEditing}
-                        unmountOnExit
                         >
                             <Fab color="primary" aria-label="Add" >
                                 <AddIcon onClick={this.addCard} />
