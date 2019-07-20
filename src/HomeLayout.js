@@ -4,54 +4,100 @@ import {Container, Row, Col } from 'react-grid-system';
 import './HomeLayout.css'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Zoom from '@material-ui/core/Zoom';
+import {
+    Route,
+    Link,
+  } from 'react-router-dom';
 
 class HomeLayout extends Component {
 
+    constructor(props){
+        super(props)
+        this.state = {
+            login: true,
+            notEditing: true,
+            mainDataList: []
+        }
+        this.addCard = this.addCard.bind(this);
+        this.createColWithCard = this.createColWithCard.bind(this);
+        // below is how to bind functions? 
+        // this.updateColor = this.updateColor.bind(this)
+    }
+
     getList(){
         //TODO: here, you will be calling the db to pull the information if they verified successfully.
-        return [
-            {
-                name: "Pappasito's Cantina",
-                desc: "Delicous Mexican food!"
-            },
-            {
-                name: "Pappasito's Cantina",
-                desc: "Delicous Mexican food!"
-            },
-            {
-                name: "Pappasito's Cantina",
-                desc: "Delicous Mexican food!"
-            }
-        ]
+        var list = [
+                        {
+                            name: "Pappasito's Cantina",
+                            desc: "Delicous Mexican food!"
+                        },
+                        {
+                            name: "Pappasito's Cantina",
+                            desc: "Delicous Mexican food!"
+                        },
+                        {
+                            name: "Pappasito's Cantina",
+                            desc: "Delicous Mexican food!"
+                        }
+                    ]
+        this.setState({
+            mainDataList: list,
+        });
+        // return [
+        //                 {
+        //                     name: "Pappasito's Cantina",
+        //                     desc: "Delicous Mexican food!"
+        //                 },
+        //                 {
+        //                     name: "Pappasito's Cantina",
+        //                     desc: "Delicous Mexican food!"
+        //                 },
+        //                 {
+        //                     name: "Pappasito's Cantina",
+        //                     desc: "Delicous Mexican food!"
+        //                 }
+        //             ]
     }
 
     createColWithCard() {
-        var rowData = this.getList()
+        //TODO: Route is used below so that if the user clicks on the card, it can take them to a new page
+        var rowData = this.state.mainDataList
         var row = rowData.map((cardInfo)=> {return <Col className="Column">
-                                                        <SimpleCard name={cardInfo.name} desc={cardInfo.desc}/>
+                                                        <Route>
+                                                            <SimpleCard name={cardInfo.name} desc={cardInfo.desc}/>
+                                                        </Route>
                                                     </Col>})
         return row
     }
 
     addCard(){
         //TODO: what do i want to show when the add button is hit? 
-        // A Modal? a "new activity", what? 
-        console.log("adfasdfasdfasdf")
+        // A Modal? a "new activity", what?
+        this.setState({notEditing: false}); 
+        // console.log(this.state.notEditing)
     }
 
     render() {
         return (
-            <div>
+            <div style={{height: "100% !important"}}>
                 <Container fluid style={{ lineHeight: '32px' }}>
                     <Row debug className="Row">
                         {this.createColWithCard()}
                     </Row>
                 </Container>
-                <div className="FloatingButtonContainer">
-                    <Fab color="primary" aria-label="Add">
-                        <AddIcon onClick={this.addCard} />
-                    </Fab>
-                </div>
+                <Link to="/add-card">
+                    <div className="FloatingButtonContainer">
+                        <Zoom
+                        in={this.state.login && this.state.notEditing}
+                        unmountOnExit
+                        >
+                            <Fab color="primary" aria-label="Add" >
+                                <AddIcon onClick={this.addCard} />
+                            </Fab>
+                        </Zoom>
+                    </div>
+                </Link>
             </div>
         ) 
     }

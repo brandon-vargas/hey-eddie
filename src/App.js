@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MenuBar from './MenuBar';
-import HomeLayout from './HomeLayout';
+import AppRouter from './AppRouter';
 
 class App extends Component {
   render() {
@@ -9,7 +9,7 @@ class App extends Component {
         {/* <Banner/> */}
         <MenuBar/>
         <div>
-          <HomeLayout/>
+          <AppRouter/>
         </div>
       </div>
     );

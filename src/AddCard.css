@@ -1,0 +1,12 @@
+.FormContainer{
+    margin: 20px;
+    height: inherit;
+}
+.Form{
+    display: 'flex';
+    flex-wrap: wrap;
+    height: inherit;
+}
+.SubmitCancelContainer{
+    text-align: center;
+}
