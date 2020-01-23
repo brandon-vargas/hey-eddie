@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Website that will present recommendations of any type for close friends. 
+Recommendations such as places to visit, places to eat, books to read, movies to watch, ect..
+Only people with a special key will be able to access the website's content(still havent decided if this is the approach i will take)
 
 ## Available Scripts
 
